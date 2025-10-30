@@ -30,7 +30,7 @@ public class SPickupItem : SBaseItem
     {
         if (mHoldObject != null)
         {
-            DropObject();  // Drop the held object
+            DropObject();  
         }
     }
 

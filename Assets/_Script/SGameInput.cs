@@ -8,7 +8,8 @@ public class SGameInput : MonoBehaviour
 
     public event EventHandler OnInteractAction;
     public event EventHandler OnAttackAction;
-    public event EventHandler OnDashAction;
+    public event EventHandler OnSprintAction;
+    public event EventHandler OnFlashlightAction;
 
     private InputSystem_Actions playerInputActions;
 
@@ -28,6 +29,9 @@ public class SGameInput : MonoBehaviour
         playerInputActions.Player.Interact.performed += Interact;
         playerInputActions.Player.Attack.performed += Attack;
         playerInputActions.Player.Sprint.performed += Sprint;
+        playerInputActions.Player.Flashlight.performed += Flashlight;
+
+
 
         playerInputActions.Player.Enable();
         IsInputEnabled = true;
@@ -45,12 +49,13 @@ public class SGameInput : MonoBehaviour
             playerInputActions.Player.Interact.performed -= Interact;
             playerInputActions.Player.Attack.performed -= Attack;
             playerInputActions.Player.Sprint.performed -= Sprint;
+            playerInputActions.Player.Flashlight.performed -= Flashlight;
         }
     }
 
     private void Sprint(InputAction.CallbackContext context)
     {
-        OnDashAction?.Invoke(this, EventArgs.Empty);
+        OnSprintAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void Attack(InputAction.CallbackContext context)
@@ -61,6 +66,11 @@ public class SGameInput : MonoBehaviour
     public void Interact(InputAction.CallbackContext context)
     {
         OnInteractAction?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void Flashlight(InputAction.CallbackContext context)
+    {
+        OnFlashlightAction?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetMovementVectorNormalized()

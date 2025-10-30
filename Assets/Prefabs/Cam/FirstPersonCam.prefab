@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 518716785355548978}
   - component: {fileID: 6795511397705449181}
   - component: {fileID: 4479826670113856401}
+  - component: {fileID: 8851055978074640755}
   m_Layer: 0
   m_Name: FirstPersonCam
   m_TagString: MainCamera
@@ -136,6 +137,7 @@ Transform:
   m_Children:
   - {fileID: 7839092468178853469}
   - {fileID: 1652500961423028375}
+  - {fileID: 3718715991094074874}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &518716785355548978
@@ -336,6 +338,22 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!114 &8851055978074640755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6035641945873926749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486624bd6ee6bd24386bf17b912f1872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mHoldArea: {fileID: 1652500961423028375}
+  mHoldObject: {fileID: 0}
+  mHoldObjectRigidbody: {fileID: 0}
+  mPickupForce: 150
 --- !u!1 &8436081064233299911
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +379,7 @@ Transform:
   m_GameObject: {fileID: 8436081064233299911}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.14}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -439,3 +457,102 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!1001 &2798553369164146989
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8598898043858076186}
+    m_Modifications:
+    - target: {fileID: -6037002925444874386, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: mLightOfFlashlight
+      value: 
+      objectReference: {fileID: 7310193519514653140}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1556
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1556
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1556
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.279
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.38112
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275913201911, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_Name
+      value: Flashlight Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874428823248942553, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_Intensity
+      value: 462.64648
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874428823248942553, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_SpotAngle
+      value: 97.26224
+      objectReference: {fileID: 0}
+    - target: {fileID: 4874428823248942553, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_ShadowRadius
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 6927316550043544949, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_InnerSpotPercent
+      value: 39.339214
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b67056e3d287335499449646059daa54, type: 3}
+--- !u!4 &3718715991094074874 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
+  m_PrefabInstance: {fileID: 2798553369164146989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7310193519514653140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4874428823238146297, guid: b67056e3d287335499449646059daa54, type: 3}
+  m_PrefabInstance: {fileID: 2798553369164146989}
+  m_PrefabAsset: {fileID: 0}

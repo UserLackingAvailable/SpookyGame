@@ -13,8 +13,8 @@ public class SPlayer : MonoBehaviour
     [SerializeField] private float mspeed = 5f;
     [SerializeField] private float mAcceleration = 10f;
     [SerializeField] private float mInteractDistance = 4f;
-    [SerializeField] private float dashForce = 10f;
-    [SerializeField] private float dashCooldown = 1f;
+    //[SerializeField] private float dashForce = 10f;
+    //[SerializeField] private float dashCooldown = 1f;
     [SerializeField] private LayerMask mItemPickupMask;
 
     //private float lastDashTime = -Mathf.Infinity;
@@ -56,6 +56,7 @@ public class SPlayer : MonoBehaviour
         mGameInput.OnInteractAction += GameInput_OnInteractAction;
         mGameInput.OnAttackAction += GameInput_OnAttackAction;
         //mGameInput.OnDashAction += GameInput_OnSprintAction;
+        mGameInput.OnFlashlightAction += GameInput_OnFlashlightAction;
 
 
     }
@@ -97,6 +98,15 @@ public class SPlayer : MonoBehaviour
             mSelectedItem.Interact(this);
         }
     }
+
+    private void GameInput_OnFlashlightAction(object sender, System.EventArgs e)
+    {
+        //call flashlight script
+        Debug.Log("Trying to call Flashlight script");
+    }
+
+
+
 
     private void FixedUpdate()
     {
@@ -157,7 +167,7 @@ public class SPlayer : MonoBehaviour
             mRigidbody.AddForce(deceleration, ForceMode.VelocityChange);
         }
     }
-    //CREATE SCRIPT SETSELECTEDITEMS
+    
     private void SetSelectedItem(SBaseItem mSelectedItem)
     {
         this.mSelectedItem = mSelectedItem;
@@ -171,6 +181,7 @@ public class SPlayer : MonoBehaviour
         mGameInput.OnInteractAction -= GameInput_OnInteractAction;
         mGameInput.OnAttackAction -= GameInput_OnAttackAction;
         //mGameInput.OnDashAction -= GameInput_OnSprintAction;
+         mGameInput.OnFlashlightAction -= GameInput_OnFlashlightAction;
     }
 
     
