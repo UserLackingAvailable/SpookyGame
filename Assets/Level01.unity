@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 294904667}
   m_Layer: 6
   m_Name: Item_TEST
-  m_TagString: Item
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a608af58195b2048b2512bea735b715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mItem: {fileID: 294904662}
+  mBaseItem: {fileID: 294904667}
   mVisualGameObjectArray:
   - {fileID: 931443532}
 --- !u!1 &688216238
