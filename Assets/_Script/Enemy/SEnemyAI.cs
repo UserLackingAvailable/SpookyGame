@@ -1,3 +1,4 @@
+using Unity.AppUI.UI;
 using Unity.Behavior;
 using UnityEngine;
 
@@ -74,14 +75,14 @@ public class SEnemyAI : MonoBehaviour
                 return;
             }
         }
-        
+
         else
         {
             Target = null;
             return;
         }
 
-        
+
         if (Physics.Raycast(eyeViewPoint, playerDir, out RaycastHit hit, distanceToPlayer))
         {
             if (hit.collider.gameObject != player.gameObject)
@@ -91,7 +92,20 @@ public class SEnemyAI : MonoBehaviour
             }
         }
 
-        
+
         Target = player.gameObject;
+    }
+
+    public void Jumpscare()
+    {
+
+    }
+    
+    public void Attack()
+    {
+       if (distanceToPlayer <= mFieldOfView.NearSightDistance)
+        {
+            //play animation
+        }
     }
 }

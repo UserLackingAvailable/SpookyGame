@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SHidingSpot : SBaseItem, IHidingSpot
@@ -55,7 +56,7 @@ public class SHidingSpot : SBaseItem, IHidingSpot
         {
             Unhide(player);
         }
-        else if (!IsOccupied)
+        else if (!IsOccupied) //Add && if not seen by enemy 
         {
             Hide(player);
         }

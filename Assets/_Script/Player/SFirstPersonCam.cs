@@ -35,12 +35,11 @@ public class SFirstPersonCam : MonoBehaviour
     {
         if (playerCamera == null || gameInput == null) return;
 
-        // Skip look input if disabled (e.g., pause or UI)
+        // Skip look input if disabled
         if (!gameInput.IsInputEnabled)
             return;
 
         Vector2 lookDelta = gameInput.GetLookDelta() * lookSensitivity * Time.deltaTime * 100f;
-        // Multiply by deltaTime*100 to match the feel of Mouse.current.delta
 
         // Rotate player (yaw)
         transform.Rotate(Vector3.up * lookDelta.x);

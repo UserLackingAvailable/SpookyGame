@@ -8,11 +8,14 @@ public class SBatteryUI : MonoBehaviour
 
     void Start()
     {
-        // Auto-assign flashlight from player if not set
+        
         if (flashlight == null && SPlayer.Instance != null)
+        {
+            
+        }
 
         if (batterySlider != null)
-            batterySlider.maxValue = 1f; // normalized to 0–1
+            batterySlider.maxValue = 1f; 
     }
 
     void Update()
