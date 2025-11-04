@@ -81,7 +81,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.7
   m_Height: 3.7202396
   m_Direction: 1
   m_Center: {x: 0, y: 1.8641086, z: 0}
@@ -101,11 +101,11 @@ MonoBehaviour:
   mspeed: 5
   mAcceleration: 10
   mInteractDistance: 4
-  dashForce: 10
-  dashCooldown: 1
   mItemPickupMask:
     serializedVersion: 2
     m_Bits: 64
+  mFlashlight: {fileID: 0}
+  mPickupController: {fileID: 0}
 --- !u!114 &8743738581200124665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPrefab: {fileID: 518716785355548978, guid: 237d2c7f1d940cc48bc00497aee0eb30, type: 3}
-  lookSensitivity: 0.5
+  lookSensitivity: 0.15
   pitchClamp: 89
   cameraHeight: 3

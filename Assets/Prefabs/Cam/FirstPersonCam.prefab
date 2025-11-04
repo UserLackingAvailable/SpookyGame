@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 518716785355548978}
   - component: {fileID: 6795511397705449181}
   - component: {fileID: 4479826670113856401}
-  - component: {fileID: 8851055978074640755}
+  - component: {fileID: -6785555877250943195}
   m_Layer: 0
   m_Name: FirstPersonCam
   m_TagString: MainCamera
@@ -338,7 +338,7 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &8851055978074640755
+--- !u!114 &-6785555877250943195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6035641945873926749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 486624bd6ee6bd24386bf17b912f1872, type: 3}
+  m_Script: {fileID: 11500000, guid: b4e53d46c9272024484a3d036ba3a514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mHoldArea: {fileID: 1652500961423028375}
@@ -379,7 +379,7 @@ Transform:
   m_GameObject: {fileID: 8436081064233299911}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: -0.211, z: 1.176}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

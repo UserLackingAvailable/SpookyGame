@@ -2,68 +2,36 @@ using UnityEngine;
 
 public class SFieldOfView : MonoBehaviour
 {
-    GameObject mTarget;
-    GameObject Target { get { return mTarget; } set { mTarget = value; } }
-
     [SerializeField] float mEyeHeight = 3f;
-    [SerializeField] float mSightDistance = 5f;
-    [SerializeField] float mViewAngle = 30f;
+    [SerializeField] float mFarSightDistance = 10f;
+    [SerializeField] float mFarViewAngle = 30f;
 
-    private void Update()
-    {
-        UpdatePlayerPerception();
-    }
+    [SerializeField] float mNearSightDistance = 3f;
+    [SerializeField] float mNearViewAngle = 90f;
 
-    private void UpdatePlayerPerception()
-    {
-        SPlayer player = SGameMode.MainGameMode.mPlayer;
-        if (!player)
-        {
-            
-            Target = null;
-            return;
-        }
-
-
-        if (Vector3.Distance(player.transform.position, transform.position) > mSightDistance)
-        {
-            
-            Target = null;
-            return;
-        }
-
-        Vector3 playerDir = (player.transform.position - transform.position).normalized;
-        if (Vector3.Angle(playerDir, transform.forward) > mViewAngle)
-        {
-            
-            Target = null;
-            return;
-        }
-
-        Vector3 eyeViewPoint = transform.position + Vector3.up * mEyeHeight;
-        if (Physics.Raycast(eyeViewPoint, playerDir, out RaycastHit hitInfo, mSightDistance))
-        {
-            if (hitInfo.collider.gameObject != player)
-            {
-                Debug.Log("Object Blocking player");
-                Target = null;
-                return;
-            }
-        }
-
-        Target = player.gameObject;
-    }
+    public float EyeHeight => mEyeHeight;
+    public float FarSightDistance => mFarSightDistance;
+    public float FarViewAngle => mFarViewAngle;
+    public float NearSightDistance => mNearSightDistance;
+    public float NearViewAngle => mNearViewAngle;
 
     void OnDrawGizmos()
     {
         Vector3 eyeViewPoint = transform.position + Vector3.up * mEyeHeight;
-        Gizmos.DrawWireSphere(eyeViewPoint, mSightDistance);
 
-        Vector3 leftLineDir = Quaternion.AngleAxis(mViewAngle, Vector3.up) * transform.forward;
-        Vector3 rightLineDir = Quaternion.AngleAxis(-mViewAngle, Vector3.up) * transform.forward;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(eyeViewPoint, mFarSightDistance);
+        Vector3 farLeft = Quaternion.AngleAxis(mFarViewAngle, Vector3.up) * transform.forward;
+        Vector3 farRight = Quaternion.AngleAxis(-mFarViewAngle, Vector3.up) * transform.forward;
+        Gizmos.DrawLine(eyeViewPoint, eyeViewPoint + farLeft * mFarSightDistance);
+        Gizmos.DrawLine(eyeViewPoint, eyeViewPoint + farRight * mFarSightDistance);
 
-        Gizmos.DrawLine(eyeViewPoint, eyeViewPoint + leftLineDir * mSightDistance);
-        Gizmos.DrawLine(eyeViewPoint, eyeViewPoint + rightLineDir * mSightDistance);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(eyeViewPoint, mNearSightDistance);
+        Vector3 nearLeft = Quaternion.AngleAxis(mNearViewAngle, Vector3.up) * transform.forward;
+        Vector3 nearRight = Quaternion.AngleAxis(-mNearViewAngle, Vector3.up) * transform.forward;
+        Gizmos.DrawLine(eyeViewPoint, eyeViewPoint + nearLeft * mNearSightDistance);
+        Gizmos.DrawLine(eyeViewPoint, eyeViewPoint + nearRight * mNearSightDistance);
 
 
     }

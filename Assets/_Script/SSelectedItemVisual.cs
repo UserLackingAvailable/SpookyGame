@@ -13,6 +13,8 @@ public class SSelectedItemVisual : MonoBehaviour
 
     private void Player_OnSelectedItemChanged(object sender, SPlayer.OnSelectedItemChangedEventArgs e)
     {
+        if (mBaseItem == null) return;
+
         if (e.mSelectedItem == mBaseItem)
         {
             Show();
@@ -27,7 +29,8 @@ public class SSelectedItemVisual : MonoBehaviour
     {
         foreach (GameObject visualGameObject in mVisualGameObjectArray)
         {
-            visualGameObject.SetActive(true);
+            if(visualGameObject != null)
+                visualGameObject.SetActive(true);
         }
     }
 
@@ -35,7 +38,8 @@ public class SSelectedItemVisual : MonoBehaviour
     {
         foreach (GameObject visualGameObject in mVisualGameObjectArray)
         {
-            visualGameObject.SetActive(false);
+            if(visualGameObject != null)
+                visualGameObject.SetActive(false);
         }
     }
 }

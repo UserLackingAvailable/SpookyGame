@@ -13,18 +13,22 @@ public class SPlayer : MonoBehaviour
     [SerializeField] private float mspeed = 5f;
     [SerializeField] private float mAcceleration = 10f;
     [SerializeField] private float mInteractDistance = 4f;
-    //[SerializeField] private float dashForce = 10f;
-    //[SerializeField] private float dashCooldown = 1f;
     [SerializeField] private LayerMask mItemPickupMask;
+    [SerializeField] private SFlashlight mFlashlight;
 
-    //private float lastDashTime = -Mathf.Infinity;
+    [SerializeField] private SPickupController mPickupController;
 
     private Rigidbody mRigidbody;
     private PlayerInput mPlayerInput;
     private SFirstPersonCam firstPersonCam;
 
+
+    private bool isHidden = false;
+    public bool IsHidden => isHidden;
+
     private SBaseItem mSelectedItem;
-    private SPickupItem mPickupController;
+    private SInteractionUI interactionUI;
+    
 
 
     private void Awake()
@@ -44,6 +48,7 @@ public class SPlayer : MonoBehaviour
         mRigidbody = GetComponent<Rigidbody>();
         mPlayerInput = GetComponent<PlayerInput>();
         firstPersonCam = GetComponent<SFirstPersonCam>();
+        interactionUI = FindFirstObjectByType<SInteractionUI>();
 
 
         mGameInput = SGameInput.Instance;
@@ -55,9 +60,21 @@ public class SPlayer : MonoBehaviour
 
         mGameInput.OnInteractAction += GameInput_OnInteractAction;
         mGameInput.OnAttackAction += GameInput_OnAttackAction;
+        mGameInput.OnDropAction += GameInput_OnDropAction;
         //mGameInput.OnDashAction += GameInput_OnSprintAction;
         mGameInput.OnFlashlightAction += GameInput_OnFlashlightAction;
 
+        if (firstPersonCam.PlayerCamera != null)
+        {
+            mFlashlight = firstPersonCam.PlayerCamera.GetComponentInChildren<SFlashlight>();
+            if (mFlashlight == null)
+                Debug.LogError("Flashlight not found under FirstPersonCamera!");
+        
+            mPickupController = firstPersonCam.PlayerCamera.GetComponent<SPickupController>();
+                if (mPickupController == null)
+                    Debug.Log("PickupController not found on FirstPersonCamera!");
+            
+        }
 
     }
 
@@ -68,40 +85,40 @@ public class SPlayer : MonoBehaviour
 
     //private void Sprint()
     //{
-    //    //if (Time.time < lastDashTime + dashCooldown) return;
-
-    //    Vector2 inputVector = mGameInput.GetMovementVectorNormalized();
-    //    Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
-
-    //    if (moveDir.sqrMagnitude < 0.01f) return; // no dash if not moving
-
-    //    //lastDashTime = Time.time;
-
-    //    mRigidbody.AddForce(moveDir * dashForce, ForceMode.Impulse);
-
-    //    //ADD LIMIT
+    //    add sprint with exhaust
     //}
 
     private void GameInput_OnAttackAction(object sender, System.EventArgs e)
     {
-       if (mSelectedItem != null)
-        {
-            mSelectedItem.Attack(this);
-        }
+        Debug.Log("Player is pressing Attack button");
     }
 
 
-    private void GameInput_OnInteractAction(object sender, System.EventArgs e)
+    private void GameInput_OnInteractAction(object sender, EventArgs e)
     {
         if (mSelectedItem != null)
         {
             mSelectedItem.Interact(this);
+            interactionUI?.Hide();
+            SetSelectedItem(null);
         }
     }
 
+
+
+    private void GameInput_OnDropAction(object sender, System.EventArgs e)
+{
+    SPickupController pickup = GetPickupController();
+    if (pickup != null && pickup.IsHoldingObject())
+    {
+        pickup.DropObject();
+    }
+}
+
+
     private void GameInput_OnFlashlightAction(object sender, System.EventArgs e)
     {
-        //call flashlight script
+        mFlashlight.ToggleFlashlight();
         Debug.Log("Trying to call Flashlight script");
     }
 
@@ -124,12 +141,21 @@ public class SPlayer : MonoBehaviour
             Debug.Log("Hitting Item");
             Debug.DrawRay(cameraPosition, cameraForward * mInteractDistance, Color.green);
 
+            if (mPickupController != null && mPickupController.IsHoldingObject() && hit.transform.gameObject == mPickupController.GetHeldObject())
+            {
+                interactionUI?.Hide();
+                SetSelectedItem(null);
+                return;
+            }
+
             if (hit.transform.TryGetComponent(out SBaseItem baseItem))
             {
-                // Perform interaction logic if the item is different from the selected item
+                string message = baseItem.GetInteractionText(this);
+
                 if (baseItem != mSelectedItem)
                 {
                     SetSelectedItem(baseItem);
+                    interactionUI?.Show(message);
                 }
             }
             else
@@ -140,12 +166,15 @@ public class SPlayer : MonoBehaviour
         else
         {
             SetSelectedItem(null);
+            interactionUI?.Hide();
             Debug.DrawRay(cameraPosition, cameraForward * mInteractDistance, Color.red);
         }
     }
 
     private void HandleMovement()
     {
+        if (isHidden) return;
+
         Vector2 inputVector = mGameInput.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
 
@@ -167,6 +196,26 @@ public class SPlayer : MonoBehaviour
             mRigidbody.AddForce(deceleration, ForceMode.VelocityChange);
         }
     }
+
+    public void AssignPickupController(SPickupController controller)
+    {
+        mPickupController = controller;
+    }
+
+    public SPickupController GetPickupController()
+    {
+        return mPickupController;
+    }
+
+    public void SetFlashLight(SFlashlight flashlight)
+    {
+        mFlashlight = flashlight;
+    }
+
+    public void SetHidden(bool hidden)
+    {
+        isHidden = hidden;
+    }
     
     private void SetSelectedItem(SBaseItem mSelectedItem)
     {
@@ -180,10 +229,9 @@ public class SPlayer : MonoBehaviour
 
         mGameInput.OnInteractAction -= GameInput_OnInteractAction;
         mGameInput.OnAttackAction -= GameInput_OnAttackAction;
-        //mGameInput.OnDashAction -= GameInput_OnSprintAction;
+        //mGameInput.OnSprintAction -= GameInput_OnSprintAction;
+        mGameInput.OnDropAction -= GameInput_OnDropAction;
          mGameInput.OnFlashlightAction -= GameInput_OnFlashlightAction;
     }
-
-    
 
 }

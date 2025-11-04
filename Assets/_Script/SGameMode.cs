@@ -2,14 +2,21 @@ using UnityEngine;
 
 public class SGameMode : MonoBehaviour
 {
-    
-    [SerializeField] private SPlayer mPlayerPrefab;
+    [SerializeField] SPlayer mPlayerGameObjectPrefab;
+    SPlayer mPlayerGameObject;
 
 
     //read only access to player variable
-    public SPlayer mPlayer => mPlayerPrefab;
+    public SPlayer mPlayer => mPlayerGameObject;
+    public static SGameMode MainGameMode;
 
-    public static SGameMode MainGameMode { get; private set; }
+     void OnDestroy()
+    {
+        if(MainGameMode == this)
+        {
+            MainGameMode = null;
+        }
+    }
 
     private void Awake()
     {
@@ -17,30 +24,17 @@ public class SGameMode : MonoBehaviour
         if (MainGameMode != null)
         {
             Destroy(gameObject);
-            
         }
 
         MainGameMode = this;
-        SpawnPlayerAtStart();
-    }
 
-    private void SpawnPlayerAtStart()
-    {
-        //var infers to variable's type based on value given
-        var playerStart = FindAnyObjectByType<SPlayerStart>();
-        if (playerStart == null)
+        SPlayerStart playerStart = FindAnyObjectByType<SPlayerStart>();
+        if (!playerStart)
         {
-            Debug.LogError("SPlayerStart not found in the scene!");
-            return;
+            throw new System.Exception("Need a player start in scene");
         }
 
-        if (mPlayerPrefab == null)
-        {
-            Debug.LogError("Player prefab not assigned in SGameMode.");
-            return;
-        }
-
-        Instantiate(mPlayerPrefab, playerStart.transform.position, playerStart.transform.rotation);
+        mPlayerGameObject = Instantiate(mPlayerGameObjectPrefab, playerStart.transform.position, playerStart.transform.rotation);
     }
 }
 

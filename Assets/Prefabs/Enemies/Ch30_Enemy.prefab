@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3638881811310211711}
   - component: {fileID: 5959212160794114558}
   - component: {fileID: -4784279780998985062}
+  - component: {fileID: 6902948274437453210}
   m_Layer: 0
   m_Name: Ch30_Enemy
   m_TagString: Untagged
@@ -136,7 +137,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Height: 1.7765254
   m_Direction: 1
   m_Center: {x: 0, y: 0.89996654, z: 0}
@@ -162,6 +163,23 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6902948274437453210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305232232101854860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ce5fcebc5f6d049b3f7c2754cc1a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mEyeHeight: 3
+  mFarSightDistance: 10
+  mFarViewAngle: 30
+  mNearSightDistance: 3
+  mNearViewAngle: 90
 --- !u!1001 &6955350800614336484
 PrefabInstance:
   m_ObjectHideFlags: 0
