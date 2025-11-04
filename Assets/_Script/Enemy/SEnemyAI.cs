@@ -103,9 +103,9 @@ public class SEnemyAI : MonoBehaviour
     
     public void Attack()
     {
-       if (distanceToPlayer <= mFieldOfView.NearSightDistance)
-        {
-            //play animation
-        }
+    //    if (distanceToPlayer <= mFieldOfView.NearSightDistance)
+    //     {
+    //         //play animation
+    //     }
     }
 }

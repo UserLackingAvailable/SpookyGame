@@ -61,7 +61,6 @@ public class SPlayer : MonoBehaviour
         mGameInput.OnInteractAction += GameInput_OnInteractAction;
         mGameInput.OnAttackAction += GameInput_OnAttackAction;
         mGameInput.OnDropAction += GameInput_OnDropAction;
-        //mGameInput.OnDashAction += GameInput_OnSprintAction;
         mGameInput.OnFlashlightAction += GameInput_OnFlashlightAction;
 
         if (firstPersonCam.PlayerCamera != null)
@@ -77,20 +76,13 @@ public class SPlayer : MonoBehaviour
         }
 
     }
-
-    //private void GameInput_OnSprintAction(object sender, EventArgs e)
-    //{
-    //    Sprint();
-    //}
-
-    //private void Sprint()
-    //{
-    //    add sprint with exhaust
-    //}
-
     private void GameInput_OnAttackAction(object sender, System.EventArgs e)
     {
-        Debug.Log("Player is pressing Attack button");
+        SPickupController pickup = GetPickupController();
+        if (pickup != null && pickup.IsHoldingObject())
+        {
+            pickup.ThrowObject();
+        }
     }
 
 
@@ -229,7 +221,6 @@ public class SPlayer : MonoBehaviour
 
         mGameInput.OnInteractAction -= GameInput_OnInteractAction;
         mGameInput.OnAttackAction -= GameInput_OnAttackAction;
-        //mGameInput.OnSprintAction -= GameInput_OnSprintAction;
         mGameInput.OnDropAction -= GameInput_OnDropAction;
          mGameInput.OnFlashlightAction -= GameInput_OnFlashlightAction;
     }

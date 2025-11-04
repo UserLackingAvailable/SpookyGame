@@ -445,6 +445,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 968151859939169397, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 968151859939169397, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 968151859939169397, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158950687127150447, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2183818964936879878, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
       propertyPath: m_text
       value: Horror Game
@@ -457,6 +473,28 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 393.90002
       objectReference: {fileID: 0}
+    - target: {fileID: 4003149471912559320, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617147078576239297, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_text
+      value: "Keyboard \n____________________\n\nMovement\nW - forward\nD - Right\nS
+        - Down\nA - Left\n\nItem Interaction\nE -  Pickup/Use Item\nLMB - Throw item\nZ
+        - Drop item\n\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617147078576239297, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4617147078576239297, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617147078576239297, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4764002177274203716, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -549,6 +587,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 355
       objectReference: {fileID: 0}
+    - target: {fileID: 5987965832005956939, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6107505980137248042, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
       propertyPath: m_Navigation.m_Mode
       value: -1
@@ -609,6 +651,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -436
       objectReference: {fileID: 0}
+    - target: {fileID: 8100369762708379249, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 8100369762708379249, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8210553246150507745, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
       propertyPath: m_Name
       value: MenuCanvas
@@ -630,7 +680,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5658176081149133371, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
+    - {fileID: 4912365397867085932, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4764002177274203716, guid: 97899bce909f65749bf0ff09bf98f40b, type: 3}
       insertIndex: 0

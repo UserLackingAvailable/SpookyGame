@@ -7,6 +7,7 @@ public class SPickupController : MonoBehaviour, IPickupController
     [SerializeField] private Rigidbody mHoldObjectRigidbody;
 
     [SerializeField] private float mPickupForce = 150.0f;
+    [SerializeField] private float mThrowForce = 500f;
     
     void Start()
     {
@@ -77,6 +78,18 @@ public class SPickupController : MonoBehaviour, IPickupController
         mHoldObjectRigidbody.constraints = RigidbodyConstraints.None;
 
         mHoldObjectRigidbody.transform.parent = null;
+        mHoldObject = null;
+        mHoldObjectRigidbody = null;
+    }
+
+    public void ThrowObject()
+    {
+        mHoldObjectRigidbody.useGravity = true;
+        mHoldObjectRigidbody.linearDamping = 1;
+        mHoldObjectRigidbody.constraints = RigidbodyConstraints.None;
+
+        mHoldObjectRigidbody.transform.parent = null;
+        mHoldObjectRigidbody.AddForce(transform.forward * mThrowForce);
         mHoldObject = null;
         mHoldObjectRigidbody = null;
     }

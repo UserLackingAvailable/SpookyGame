@@ -9,7 +9,6 @@ public class SGameInput : MonoBehaviour
     public event EventHandler OnInteractAction;
     public event EventHandler OnAttackAction;
     public event EventHandler OnDropAction;
-    public event EventHandler OnSprintAction;
     public event EventHandler OnFlashlightAction;
 
     private InputSystem_Actions playerInputActions;
@@ -30,7 +29,6 @@ public class SGameInput : MonoBehaviour
         playerInputActions.Player.Interact.performed += Interact;
         playerInputActions.Player.Attack.performed += Attack;
         playerInputActions.Player.Drop.performed += Drop;
-        playerInputActions.Player.Sprint.performed += Sprint;
         playerInputActions.Player.Flashlight.performed += Flashlight;
 
 
@@ -51,14 +49,8 @@ public class SGameInput : MonoBehaviour
             playerInputActions.Player.Interact.performed -= Interact;
             playerInputActions.Player.Attack.performed -= Attack;
             playerInputActions.Player.Drop.performed -= Drop;
-            playerInputActions.Player.Sprint.performed -= Sprint;
             playerInputActions.Player.Flashlight.performed -= Flashlight;
         }
-    }
-
-    private void Sprint(InputAction.CallbackContext context)
-    {
-        OnSprintAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void Attack(InputAction.CallbackContext context)
