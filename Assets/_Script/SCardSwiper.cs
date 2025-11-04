@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class SCardSwiper : SBaseItem
 {
-    [SerializeField] private Transform doorExit; 
+    [SerializeField] private Transform doorExit;
     public override string GetInteractionText(SPlayer player)
     {
+
         SPickupController pickup = player.GetPickupController();
 
         if (pickup != null && pickup.IsHoldingObject() &&
@@ -13,7 +14,7 @@ public class SCardSwiper : SBaseItem
             return "Press E to SWIPE ID CARD";
         }
 
-        return base.GetInteractionText(player);
+        return "Need ID CARD";
     }
 
     public override void Interact(SPlayer player)
