@@ -354,6 +354,7 @@ MonoBehaviour:
   mHoldObject: {fileID: 0}
   mHoldObjectRigidbody: {fileID: 0}
   mPickupForce: 150
+  mThrowForce: 500
 --- !u!1 &8436081064233299911
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +470,10 @@ PrefabInstance:
       propertyPath: mLightOfFlashlight
       value: 
       objectReference: {fileID: 7310193519514653140}
+    - target: {fileID: 1535161275911206455, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1535161275912975575, guid: b67056e3d287335499449646059daa54, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1556
@@ -524,6 +529,10 @@ PrefabInstance:
     - target: {fileID: 1535161275913201911, guid: b67056e3d287335499449646059daa54, type: 3}
       propertyPath: m_Name
       value: Flashlight Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535161275913201911, guid: b67056e3d287335499449646059daa54, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4874428823248942553, guid: b67056e3d287335499449646059daa54, type: 3}
       propertyPath: m_Intensity

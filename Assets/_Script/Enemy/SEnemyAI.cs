@@ -15,19 +15,23 @@ public class SEnemyAI : MonoBehaviour
             if (Target == value)
                 return;
 
-             if (value == null)
-             {
-                 mBehaviorGraphAgent.BlackboardReference.SetVariableValue("HasLastSeenPosition", true);
+            if (value == null)
+            {
+                mBehaviorGraphAgent.BlackboardReference.SetVariableValue("HasLastSeenLocation", true);
                 mBehaviorGraphAgent.BlackboardReference.SetVariableValue("TargetLastSeenPosition", mTarget.transform.position);
-             }
+            }
 
             mTarget = value;
             mBehaviorGraphAgent.BlackboardReference.SetVariableValue("Target", mTarget);
         }
     }
+    
+    [SerializeField] private Animator mAnimator;
 
     SFieldOfView mFieldOfView;
     BehaviorGraphAgent mBehaviorGraphAgent;
+    private int attackCount = 0;
+    public int MaxAttacksBeforeJumpscare = 3;
     private void Awake()
     {
         mFieldOfView = GetComponent<SFieldOfView>();
@@ -96,16 +100,29 @@ public class SEnemyAI : MonoBehaviour
         Target = player.gameObject;
     }
 
+     public void Attack()
+    {
+        float distanceToPlayer = Vector3.Distance(
+            SGameMode.MainGameMode.mPlayer.transform.position,
+            transform.position
+        );
+
+        if (distanceToPlayer <= mFieldOfView.NearSightDistance)
+        {
+            attackCount++;
+
+
+            if (attackCount >= MaxAttacksBeforeJumpscare)
+            {
+                Jumpscare();
+                attackCount = 0;
+            }
+        }
+    }
+
     public void Jumpscare()
     {
-
-    }
-    
-    public void Attack()
-    {
-    //    if (distanceToPlayer <= mFieldOfView.NearSightDistance)
-    //     {
-    //         //play animation
-    //     }
+        // TODO: Trigger jumpscare animation or scene
+        Debug.Log("Triggering Jumpscare");
     }
 }

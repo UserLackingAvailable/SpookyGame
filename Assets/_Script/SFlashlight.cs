@@ -63,9 +63,12 @@ public class SFlashlight : MonoBehaviour
         }
     }
 
-    public void AddBattery(float amount)
+    public void AddBattery()
     {
-         mCurrentBattery = Mathf.Min(mCurrentBattery + amount, mMaxBattery);
+        float batteryAmountToAdd = 25f;
+
+        mCurrentBattery = Mathf.Min(mCurrentBattery + batteryAmountToAdd, mMaxBattery);
+        Debug.Log($"Battery : {mCurrentBattery}");
          
      }
 

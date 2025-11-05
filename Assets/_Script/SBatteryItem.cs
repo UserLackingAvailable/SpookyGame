@@ -2,22 +2,21 @@ using UnityEngine;
 
 public class SBatteryItem : SBaseItem
 {
-    [SerializeField] private float batteryAmountGiven = 25f; 
 
     public override void Interact(SPlayer player)
     {
-        SFlashlight flashlight = player.GetComponent<SFlashlight>();
+
+        SFlashlight flashlight = player.GetComponentInChildren<SFlashlight>();
         if (flashlight != null)
         {
-            flashlight.AddBattery(batteryAmountGiven); // actually add the battery
-            Debug.Log($"Added {batteryAmountGiven} battery to flashlight!");
+            flashlight.AddBattery();
         }
         else
         {
-            Debug.LogWarning("Player has no flashlight to charge!");
+            Debug.LogWarning("Player does not have a flashlight!");
         }
 
-        Destroy(gameObject); // remove the battery from the world
+        Destroy(gameObject); // Remove the battery item
     }
 
     public override string GetInteractionText(SPlayer player)

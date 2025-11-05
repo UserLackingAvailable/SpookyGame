@@ -11,11 +11,14 @@ public class SBatteryUI : MonoBehaviour
         
         if (flashlight == null && SPlayer.Instance != null)
         {
-            
+            flashlight = FindFirstObjectByType<SFlashlight>();
         }
 
         if (batterySlider != null)
-            batterySlider.maxValue = 1f; 
+        {
+            batterySlider.maxValue = 1f;
+            batterySlider.value = flashlight.BatteryPercent;
+        }
     }
 
     void Update()
@@ -23,6 +26,6 @@ public class SBatteryUI : MonoBehaviour
         if (flashlight == null || batterySlider == null)
             return;
 
-        batterySlider.value = Mathf.Clamp01(flashlight.BatteryPercent);
+        batterySlider.value = flashlight.BatteryPercent;
     }
 }
