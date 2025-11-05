@@ -6,7 +6,7 @@ public class SGameManager : MonoBehaviour
     public static SGameManager Instance;
 
     public Text gameOverText; 
-    public Text winText; 
+    public Text winText;      
 
     private bool isGameOver = false;
     private bool isGameWon = false;
@@ -26,30 +26,28 @@ public class SGameManager : MonoBehaviour
         {
             CheckItemsCollected();
         }
-
     }
 
     private void CheckItemsCollected()
     {
+        
         GameObject[] collectItems = GameObject.FindGameObjectsWithTag("Collect");
         hasCollectedAllItems = true;
 
         foreach (GameObject item in collectItems)
         {
-            if (item != null) 
+            if (item != null)
             {
                 hasCollectedAllItems = false; 
                 break;
             }
         }
 
-        if (hasCollectedAllItems)
+        if (hasCollectedAllItems && !isGameWon) 
         {
-            // Display code input UI
-            winText.gameObject.SetActive(false);
+            WinGame(); 
         }
     }
-
 
     public void GameOver()
     {
@@ -57,7 +55,8 @@ public class SGameManager : MonoBehaviour
         {
             isGameOver = true;
             gameOverText.gameObject.SetActive(true);
-            winText.gameObject.SetActive(false);
+            winText.gameObject.SetActive(false); 
+            Time.timeScale = 0f; 
         }
     }
 
@@ -66,8 +65,15 @@ public class SGameManager : MonoBehaviour
         if (!isGameWon)
         {
             isGameWon = true;
-            winText.gameObject.SetActive(true);
-            gameOverText.gameObject.SetActive(false);
+            winText.gameObject.SetActive(true); 
+            gameOverText.gameObject.SetActive(false); 
+            Time.timeScale = 0f; 
         }
+    }
+
+    
+    public bool IsGameWon()
+    {
+        return isGameWon;
     }
 }

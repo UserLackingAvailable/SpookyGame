@@ -2,6 +2,8 @@ using Unity.AppUI.UI;
 using Unity.Behavior;
 using UnityEngine;
 
+using System.Collections;
+
 public class SEnemyAI : MonoBehaviour
 {
     private GameObject mTarget;
@@ -94,12 +96,7 @@ public class SEnemyAI : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SJumpscare jumpscare = GetComponent<SJumpscare>();
-            
-            if(jumpscare != null)
-            {
-                jumpscare.TriggerJumpscare();
-            }
+            Attack();
         }
     }
 
@@ -134,7 +131,21 @@ public class SEnemyAI : MonoBehaviour
                 SAudioManager audioManager = FindFirstObjectByType<SAudioManager>();
 
                 audioManager.Play("EnemyBite");
+
+                StartCoroutine(NotifyGameOverAfterDelay());
             }
+        }
+    }
+
+    private IEnumerator NotifyGameOverAfterDelay()
+    {
+        
+        yield return new WaitForSeconds(3f);
+
+        
+        if (gameManager != null)
+        {
+            gameManager.GameOver();  
         }
     }
 
