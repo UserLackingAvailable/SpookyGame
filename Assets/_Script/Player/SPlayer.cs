@@ -110,6 +110,8 @@ public class SPlayer : MonoBehaviour
 
     private void GameInput_OnFlashlightAction(object sender, System.EventArgs e)
     {
+        SAudioManager audioManager = FindAnyObjectByType<SAudioManager>();
+        audioManager.Play("Flashlight");
         mFlashlight.ToggleFlashlight();
         Debug.Log("Trying to call Flashlight script");
     }
@@ -208,7 +210,7 @@ public class SPlayer : MonoBehaviour
     {
         isHidden = hidden;
     }
-    
+
     private void SetSelectedItem(SBaseItem mSelectedItem)
     {
         this.mSelectedItem = mSelectedItem;
